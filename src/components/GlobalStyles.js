@@ -17,7 +17,7 @@ const globalStyles = createGlobalStyle`
         text-align:center;
         color:white;
         background-color: hsl(70, 0%, 15%);
-        padding:40px 0px;
+        padding:0px 0px 40px;
         display:flex;
         flex-direction:column;
         align-items:center;

@@ -9,7 +9,9 @@ const Title = styled.h1`
   font-weight: 700;
 `;
 
-const SampleContainer = styled.div``;
+const SampleContainer = styled.div`
+  margin-top: 40px;
+`;
 
 const cutframes = keyframes`
   from {
@@ -54,8 +56,6 @@ export default () => (
     </SampleContainer>
 
     <Title>Crop At Once</Title>
-    <Description>
-      Please upload same height images. <br /> <br /> 대표이미지입니다.
-    </Description>
+    <Description>Please upload same height images</Description>
   </Header>
 );
