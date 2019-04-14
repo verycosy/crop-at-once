@@ -15,8 +15,8 @@ const SampleContainer = styled.div`
 
 const cutframes = keyframes`
   from {
-    background-color: red;
-    opacity:0.5;
+    background-color: #d3394c;
+    opacity:0.3;
   }
 
   to {

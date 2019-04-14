@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Cropper from "cropperjs";
+import Jimp from "jimp/es";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 
 const UploadFileBtn = styled.input`
   display: none;
@@ -58,72 +61,93 @@ class UploadFiles extends Component {
     uploaded: false,
     files: null,
     event: null,
-    width: null,
-    height: null
+    checkCnt: 0
   };
 
-  _upload = () => {
-    const files = document.getElementById("uploadFileBtn").files;
+  _sizeCheck = (image, width, height) => {
+    const { checkCnt } = this.state;
 
-    const img = document.createElement("img");
-    img.src = window.URL.createObjectURL(files[0]);
-    img.style.maxHeight = "60vh";
-
-    const div = document.getElementById("container");
-    div.innerHTML = "";
-    div.appendChild(img);
-
-    const that = this;
-    const cropper = new Cropper(img, {
-      zoomable: false,
-      viewMode: 1,
-      ready() {
-        that.setState({
-          width: img.naturalWidth,
-          height: img.naturalHeight,
-          uploaded: true,
-          files
-        });
-      },
-      crop(event) {
-        that.setState({
-          event
-        });
-      }
-    });
-  };
-
-  _sizeCheck = () => {
-    const { event, files, width, height } = this.state;
-    let checkCnt = 0;
-
-    for (const file of files) {
-      const image = new Image();
-      image.src = window.URL.createObjectURL(file);
-      image.onload = () => {
-        //FIXME: Don't make functions within a loop
-        console.log(
-          `${file.name} - ${width} x ${height} : ${image.width} x ${
-            image.height
-          }`
-        );
-        if (height !== image.height || width !== image.width) {
-          alert("이미지들의 크기가 서로 다릅니다 ! 다시 선택해주세요 !");
-          return false;
-        } else {
-          checkCnt++;
-
-          if (checkCnt === files.length) {
-            this._crop();
-          }
-        }
-      };
+    if (height !== image.height || width !== image.width) {
+      this.setState({
+        checkCnt: 0
+      });
+    } else {
+      this.setState({
+        checkCnt: checkCnt + 1
+      });
     }
   };
 
-  _crop = () => {
+  _upload = () => {
+    this.setState({
+      checkCnt: 0
+    });
+
+    const files = document.getElementById("uploadFileBtn").files;
+    const div = document.getElementById("container");
+    div.innerHTML = "";
+
+    if (files.length !== 0) {
+      const firstImg = document.createElement("img");
+      firstImg.src = window.URL.createObjectURL(files[0]);
+      firstImg.style.maxHeight = "60vh";
+
+      div.appendChild(firstImg);
+
+      const that = this;
+      new Cropper(firstImg, {
+        zoomable: false,
+        viewMode: 1,
+        ready() {
+          that.setState({
+            uploaded: true,
+            files
+          });
+        },
+        crop(event) {
+          that.setState({
+            event
+          });
+        }
+      });
+
+      for (const file of files) {
+        const image = new Image();
+        image.onload = () => {
+          this._sizeCheck(image, firstImg.naturalWidth, firstImg.naturalHeight);
+        };
+        image.src = window.URL.createObjectURL(file);
+      }
+    } else {
+      this.setState({
+        uploaded: false,
+        files: null,
+        event: null
+      });
+    }
+  };
+
+  _crop = async () => {
     //TODO: 이미지 사이즈 체크 & 업로드 & 자르기 중에 Loader 표시
-    console.log("CROPPED");
+    const { checkCnt, files, event } = this.state;
+
+    if (files.length === checkCnt) {
+      const zip = new JSZip();
+      const { detail } = event;
+
+      for (const file of files) {
+        const image = await Jimp.read(window.URL.createObjectURL(file));
+        image.crop(detail.x, detail.y, detail.width, detail.height);
+        await image.getBuffer(image.getMIME(), (err, data) => {
+          zip.file(file.name, data, { base64: true });
+        });
+      }
+
+      zip.generateAsync({ type: "blob" }).then(function(content) {
+        saveAs(content, "Crop-At-Once.zip");
+      });
+    } else
+      alert("이미지들의 크기가 서로 다릅니다!\n이미지를 다시 선택해주세요!");
   };
 
   render() {
@@ -147,13 +171,13 @@ class UploadFiles extends Component {
         {uploaded ? (
           <>
             <Info>
-              <span role="img" aria-label="clap">
+              <span role="img" aria-label="clap" style={{ marginRight: "5px" }}>
                 👏
-              </span>{" "}
-              대표이미지를 포함해 사진 {files.length}
-              장이 선택되었습니다.
+              </span>
+              대표 이미지를 포함해 <u>사진 {files.length}장</u>이
+              선택되었습니다.
             </Info>
-            <CropBtn id="cropBtn" onClick={this._sizeCheck}>
+            <CropBtn id="cropBtn" onClick={this._crop}>
               ✂ Crop !
             </CropBtn>
           </>
