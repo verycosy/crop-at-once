@@ -16,7 +16,7 @@ const SampleContainer = styled.div`
 const cutframes = keyframes`
   from {
     background-color: #d3394c;
-    opacity:0.3;
+    opacity:0.5;
   }
 
   to {
@@ -27,17 +27,21 @@ const cutframes = keyframes`
 
 const Cutter = styled.div`
   height: 16px;
-  position: absolute;
+  position: relative;
+  margin: 0 auto;
   z-index: 10;
   width: 726px;
-  animation: ${cutframes} 2.5s infinite;
+  animation: ${cutframes} 1.2s infinite;
+  animation-direction: alternate;
 `;
 
 const SampleImg = styled.img`
   height: 400px;
+  margin-top: -16px;
 
   &:nth-child(3) {
-    margin: 0px 10px;
+    margin-right: 10px;
+    margin-left: 10px;
   }
 `;
 

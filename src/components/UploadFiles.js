@@ -128,7 +128,7 @@ class UploadFiles extends Component {
   };
 
   _crop = async () => {
-    //TODO: 이미지 사이즈 체크 & 업로드 & 자르기 중에 Loader 표시
+    //TODO: 업로드 & 이미지 사이즈 체크 &  & 자르기 중에 Loader 표시
     const { checkCnt, files, event } = this.state;
 
     if (files.length === checkCnt) {
