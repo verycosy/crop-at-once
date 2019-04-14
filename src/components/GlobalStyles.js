@@ -15,7 +15,12 @@ const globalStyles = createGlobalStyle`
         font-family: "Noto Sans KR", sans-serif;
         font-size:12px;
         text-align:center;
-        background-color: white;
+        color:white;
+        background-color: hsl(70, 0%, 15%);
+        padding:40px 0px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
     }
 `;
 
