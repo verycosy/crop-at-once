@@ -1,11 +1,11 @@
 {
-  "main.js": "/cao/static/js/main.d4487907.chunk.js",
-  "main.js.map": "/cao/static/js/main.d4487907.chunk.js.map",
-  "runtime~main.js": "/cao/static/js/runtime~main.eb297f73.js",
-  "runtime~main.js.map": "/cao/static/js/runtime~main.eb297f73.js.map",
-  "static/js/2.48c3bbfb.chunk.js": "/cao/static/js/2.48c3bbfb.chunk.js",
-  "static/js/2.48c3bbfb.chunk.js.map": "/cao/static/js/2.48c3bbfb.chunk.js.map",
-  "index.html": "/cao/index.html",
-  "precache-manifest.0fb84cfa5334e9438c3567b93ccfa230.js": "/cao/precache-manifest.0fb84cfa5334e9438c3567b93ccfa230.js",
-  "service-worker.js": "/cao/service-worker.js"
+  "main.js": "/crop-at-once/static/js/main.d4487907.chunk.js",
+  "main.js.map": "/crop-at-once/static/js/main.d4487907.chunk.js.map",
+  "runtime~main.js": "/crop-at-once/static/js/runtime~main.1b4d1331.js",
+  "runtime~main.js.map": "/crop-at-once/static/js/runtime~main.1b4d1331.js.map",
+  "static/js/2.eb9a0e9a.chunk.js": "/crop-at-once/static/js/2.eb9a0e9a.chunk.js",
+  "static/js/2.eb9a0e9a.chunk.js.map": "/crop-at-once/static/js/2.eb9a0e9a.chunk.js.map",
+  "index.html": "/crop-at-once/index.html",
+  "precache-manifest.41ccdb299e38818899b6f99df4119574.js": "/crop-at-once/precache-manifest.41ccdb299e38818899b6f99df4119574.js",
+  "service-worker.js": "/crop-at-once/service-worker.js"
 }
