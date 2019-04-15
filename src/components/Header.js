@@ -1,5 +1,8 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import sample1 from "../sample/1.png";
+import sample2 from "../sample/2.png";
+import sample3 from "../sample/3.png";
 
 const Header = styled.header``;
 
@@ -52,9 +55,9 @@ export default () => (
   <Header>
     <SampleContainer>
       <Cutter />
-      <SampleImg src="/sample/1.png" />
-      <SampleImg src="/sample/2.png" />
-      <SampleImg src="/sample/3.png" />
+      <SampleImg src={sample1} />
+      <SampleImg src={sample2} />
+      <SampleImg src={sample3} />
       <Cutter style={{ height: "36px", marginTop: "-36px" }} />
     </SampleContainer>
 
