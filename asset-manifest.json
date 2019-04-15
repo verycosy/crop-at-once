@@ -1,11 +1,14 @@
 {
-  "main.js": "/crop-at-once/static/js/main.babfacc7.chunk.js",
-  "main.js.map": "/crop-at-once/static/js/main.babfacc7.chunk.js.map",
+  "main.js": "/crop-at-once/static/js/main.4db93f6a.chunk.js",
+  "main.js.map": "/crop-at-once/static/js/main.4db93f6a.chunk.js.map",
   "runtime~main.js": "/crop-at-once/static/js/runtime~main.1b4d1331.js",
   "runtime~main.js.map": "/crop-at-once/static/js/runtime~main.1b4d1331.js.map",
-  "static/js/2.eb9a0e9a.chunk.js": "/crop-at-once/static/js/2.eb9a0e9a.chunk.js",
-  "static/js/2.eb9a0e9a.chunk.js.map": "/crop-at-once/static/js/2.eb9a0e9a.chunk.js.map",
+  "static/js/2.fbf7b676.chunk.js": "/crop-at-once/static/js/2.fbf7b676.chunk.js",
+  "static/js/2.fbf7b676.chunk.js.map": "/crop-at-once/static/js/2.fbf7b676.chunk.js.map",
   "index.html": "/crop-at-once/index.html",
-  "precache-manifest.bda899a181fac845eb86414980e29d53.js": "/crop-at-once/precache-manifest.bda899a181fac845eb86414980e29d53.js",
-  "service-worker.js": "/crop-at-once/service-worker.js"
+  "precache-manifest.3ce9ea4caf4c731dea6f2e1767a7675d.js": "/crop-at-once/precache-manifest.3ce9ea4caf4c731dea6f2e1767a7675d.js",
+  "service-worker.js": "/crop-at-once/service-worker.js",
+  "static/media/1.png": "/crop-at-once/static/media/1.fcea0137.png",
+  "static/media/2.png": "/crop-at-once/static/media/2.95dbb909.png",
+  "static/media/3.png": "/crop-at-once/static/media/3.dd8814c1.png"
 }
