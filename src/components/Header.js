@@ -29,7 +29,6 @@ const Cutter = styled.div`
   height: 16px;
   position: relative;
   margin: 0 auto;
-  z-index: 10;
   width: 726px;
   animation: ${cutframes} 1.2s infinite;
   animation-direction: alternate;
@@ -60,6 +59,6 @@ export default () => (
     </SampleContainer>
 
     <Title>Crop At Once</Title>
-    <Description>Please upload same height images</Description>
+    <Description>Please upload same height images.</Description>
   </Header>
 );

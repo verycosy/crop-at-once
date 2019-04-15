@@ -4,6 +4,7 @@ import Cropper from "cropperjs";
 import Jimp from "jimp/es";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
+import Loader from "./Loader";
 
 const UploadFileBtn = styled.input`
   display: none;
@@ -61,7 +62,9 @@ class UploadFiles extends Component {
     uploaded: false,
     files: null,
     event: null,
-    checkCnt: 0
+    checkCnt: 0,
+    loading: false,
+    current: 0
   };
 
   _sizeCheck = (image, width, height) => {
@@ -128,30 +131,42 @@ class UploadFiles extends Component {
   };
 
   _crop = async () => {
-    //TODO: 업로드 & 이미지 사이즈 체크 &  & 자르기 중에 Loader 표시
     const { checkCnt, files, event } = this.state;
 
     if (files.length === checkCnt) {
+      this.setState({
+        loading: true
+      });
+
       const zip = new JSZip();
       const { detail } = event;
+      const that = this;
 
-      for (const file of files) {
-        const image = await Jimp.read(window.URL.createObjectURL(file));
+      for (let i = 0; i < files.length; i++) {
+        const image = await Jimp.read(window.URL.createObjectURL(files[i]));
         image.crop(detail.x, detail.y, detail.width, detail.height);
         await image.getBuffer(image.getMIME(), (err, data) => {
-          zip.file(file.name, data, { base64: true });
+          zip.file(files[i].name, data, { base64: true });
+          this.setState({
+            current: i + 1
+          });
+          console.log(data);
         });
       }
 
       zip.generateAsync({ type: "blob" }).then(function(content) {
         saveAs(content, "Crop-At-Once.zip");
+        that.setState({
+          loading: false,
+          current: 0
+        });
       });
     } else
       alert("이미지들의 크기가 서로 다릅니다!\n이미지를 다시 선택해주세요!");
   };
 
   render() {
-    const { uploaded, files } = this.state;
+    const { loading, uploaded, files, current } = this.state;
 
     return (
       <>
@@ -178,9 +193,17 @@ class UploadFiles extends Component {
               선택되었습니다.
             </Info>
             <CropBtn id="cropBtn" onClick={this._crop}>
-              ✂ Crop !
+              <i class="fas fa-cut" /> 싹둑싹둑
             </CropBtn>
           </>
+        ) : null}
+
+        {loading ? (
+          <Loader
+            current={current}
+            length={files.length}
+            scrollY={window.scrollY}
+          />
         ) : null}
       </>
     );
