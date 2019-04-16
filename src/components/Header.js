@@ -14,6 +14,12 @@ const Title = styled.h1`
 
 const SampleContainer = styled.div`
   margin-top: 40px;
+
+  @media (max-width: 700px) {
+    img:not(:nth-child(3)) {
+      display: none;
+    }
+  }
 `;
 
 const cutframes = keyframes`
@@ -29,12 +35,16 @@ const cutframes = keyframes`
 `;
 
 const Cutter = styled.div`
-  height: 16px;
+  height: 17px;
   position: relative;
   margin: 0 auto;
   width: 726px;
   animation: ${cutframes} 1.2s infinite;
   animation-direction: alternate;
+
+  @media (max-width: 700px) {
+    width: 236px;
+  }
 `;
 
 const SampleImg = styled.img`
@@ -49,6 +59,7 @@ const SampleImg = styled.img`
 
 const Description = styled.p`
   margin: 10px 0px;
+  line-height: 24px;
 `;
 
 export default () => (
@@ -62,6 +73,10 @@ export default () => (
     </SampleContainer>
 
     <Title>Crop At Once</Title>
-    <Description>Please upload same height images.</Description>
+    <Description>
+      This service provide cropping equal height images that you want.
+      <br />
+      So please upload equal height images !
+    </Description>
   </Header>
 );

@@ -53,6 +53,7 @@ const Label = styled.label`
 `;
 
 const Container = styled.div`
+  max-width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -93,6 +94,7 @@ class UploadFiles extends Component {
     if (files.length !== 0) {
       const firstImg = document.createElement("img");
       firstImg.src = window.URL.createObjectURL(files[0]);
+      firstImg.style.maxWidth = "100%";
       firstImg.style.maxHeight = "60vh";
 
       div.appendChild(firstImg);
@@ -189,11 +191,10 @@ class UploadFiles extends Component {
               <span role="img" aria-label="clap" style={{ marginRight: "5px" }}>
                 👏
               </span>
-              대표 이미지를 포함해 <u>사진 {files.length}장</u>이
-              선택되었습니다.
+              <u>{files.length} images</u> selected.
             </Info>
             <CropBtn id="cropBtn" onClick={this._crop}>
-              <i class="fas fa-cut" /> 싹둑싹둑
+              <i className="fas fa-cut" /> Crop !
             </CropBtn>
           </>
         ) : null}
