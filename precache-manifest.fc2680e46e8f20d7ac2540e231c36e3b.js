@@ -16,15 +16,15 @@ self.__precacheManifest = [
     "url": "/crop-at-once/static/js/runtime~main.1b4d1331.js"
   },
   {
-    "revision": "ea9b017c8227dcd6ef14",
-    "url": "/crop-at-once/static/js/main.4db93f6a.chunk.js"
+    "revision": "5525f1d91b208afc3ea5",
+    "url": "/crop-at-once/static/js/main.aaf68773.chunk.js"
   },
   {
     "revision": "4868d675dc2ff235ae09",
     "url": "/crop-at-once/static/js/2.fbf7b676.chunk.js"
   },
   {
-    "revision": "e29a02f423f73915026b1ccb627970d0",
+    "revision": "743ba91f7d794631d0ef976357f91d18",
     "url": "/crop-at-once/index.html"
   }
 ];
