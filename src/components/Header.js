@@ -74,9 +74,9 @@ export default () => (
 
     <Title>Crop At Once</Title>
     <Description>
-      This service provide cropping equal height images that you want.
+      This service provides cropping images with equal size.
       <br />
-      So please upload equal height images !
+      So please upload equal size images !
     </Description>
   </Header>
 );
